@@ -1,5 +1,10 @@
 import Processo from "../abstracoes/processo";
 import DiretorSolteiroSimples from "../diretores/diretorSolteiroSimples";
+import DiretorSolteiroMais from "../diretores/diretorSolteiroMais";
+import DiretorCasalSimples from "../diretores/diretorCasalSimples";
+import DiretorFamiliaSimples from "../diretores/diretorFamiliaSimples";
+import DiretorFamiliaMais from "../diretores/diretorFamiliaMais";
+import DiretorFamiliaSuper from "../diretores/diretorFamiliaSuper";
 import Armazem from "../dominio/armazem";
 import Acomodacao from "../modelos/acomodacao";
 
@@ -10,7 +15,23 @@ export default class CadastroAcomodacoes extends Processo {
         this.acomodacoes = Armazem.InstanciaUnica.Acomodacoes
     }
     processar(): void {
+        console.log("\n--- Cadastrando Acomodações ---")
         let diretor = new DiretorSolteiroSimples()
+        this.acomodacoes.push(diretor.construir())
+
+        diretor = new DiretorSolteiroMais()
+        this.acomodacoes.push(diretor.construir())
+
+        diretor = new DiretorCasalSimples()
+        this.acomodacoes.push(diretor.construir())
+
+        diretor = new DiretorFamiliaSimples()
+        this.acomodacoes.push(diretor.construir())
+
+        diretor = new DiretorFamiliaMais()
+        this.acomodacoes.push(diretor.construir())
+
+        diretor = new DiretorFamiliaSuper()
         this.acomodacoes.push(diretor.construir())
     }
 }
